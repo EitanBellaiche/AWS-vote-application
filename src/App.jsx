@@ -8,9 +8,7 @@ export default function App() {
   const [results, setResults] = useState(null);
   const [error, setError] = useState("");
   const [loadingResults, setLoadingResults] = useState(false);
-  const [presenter, setPresenter] = useState(false);
-  const [autoRefresh, setAutoRefresh] = useState(true);
-  const [intervalMs, setIntervalMs] = useState(1500);
+  const [intervalMs] = useState(1500);
 
   const timerRef = useRef(null);
   const shellRef = useRef(null);
@@ -21,11 +19,6 @@ export default function App() {
     B: { className: "opt-b" },
     C: { className: "opt-c" },
   };
-
-  function stopAutoRefresh() {
-    if (timerRef.current) clearInterval(timerRef.current);
-    timerRef.current = null;
-  }
 
   async function fetchResults(id) {
     const res = await fetch(`${API_BASE}/polls/${encodeURIComponent(id)}/results`);
@@ -47,38 +40,22 @@ export default function App() {
     }
   }
 
+  function stopAutoRefresh() {
+    if (timerRef.current) clearInterval(timerRef.current);
+    timerRef.current = null;
+  }
+
   function startAutoRefresh() {
     stopAutoRefresh();
     timerRef.current = setInterval(refreshResults, intervalMs);
   }
 
-  async function enterPresenter() {
-    try {
-      setPresenter(true);
-      if (shellRef.current?.requestFullscreen) await shellRef.current.requestFullscreen();
-      else if (document.documentElement.requestFullscreen) await document.documentElement.requestFullscreen();
-    } catch (e) {
-      console.warn("Fullscreen failed:", e);
-    }
-  }
-
-  function exitPresenter() {
-    setPresenter(false);
-    if (document.fullscreenElement) document.exitFullscreen?.();
-  }
-
   useEffect(() => {
     refreshResults();
-    if (autoRefresh) startAutoRefresh();
+    startAutoRefresh();
     return () => stopAutoRefresh();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  useEffect(() => {
-    stopAutoRefresh();
-    if (autoRefresh) startAutoRefresh();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [intervalMs, autoRefresh]);
 
   const total = results?.total ?? 0;
   const counts = results?.counts ?? {};
@@ -87,43 +64,18 @@ export default function App() {
   return (
     <div className="app-page vote-page">
       <div ref={shellRef} className="app-shell">
-        <section className={`card results-card presenter ${presenter ? "pulse" : ""}`}>
+        <section className="card results-card presenter">
           <div className="header-row">
             <div className="header-left">
               <div className="kicker">Cloud Voting Demo</div>
               <h1 className="page-title">Live Poll Results</h1>
-              <div className="subline">
-                Poll: <b>{pollId}</b> — API: <code className="code-pill">{API_BASE}</code>
-              </div>
+              <div className="subline">Poll: <b>{pollId}</b></div>
               <div className="live-pill">
                 <span className="live-dot" />
                 Live stream
               </div>
             </div>
 
-            <div className="controls">
-              <button className="ghost-btn" onClick={() => setAutoRefresh((s) => !s)}>
-                {autoRefresh ? "Auto: On" : "Auto: Off"}
-              </button>
-
-              <button
-                className="ghost-btn"
-                onClick={() => setIntervalMs(intervalMs === 1500 ? 5000 : 1500)}
-                title="Cycle interval"
-              >
-                Interval: {intervalMs / 1000}s
-              </button>
-
-              {!presenter ? (
-                <button className="ghost-btn" onClick={enterPresenter}>
-                  Present
-                </button>
-              ) : (
-                <button className="ghost-btn" onClick={exitPresenter}>
-                  Exit
-                </button>
-              )}
-            </div>
           </div>
 
           <div className="kpi-grid">
@@ -199,9 +151,6 @@ export default function App() {
             </div>
           </div>
 
-          <div className="present-footer">
-            Backend: API Gateway + Lambda + DynamoDB + SQS (FIFO). Frontend: React + Cognito.
-          </div>
         </section>
       </div>
     </div>

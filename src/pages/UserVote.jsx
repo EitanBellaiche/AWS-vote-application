@@ -69,35 +69,18 @@ export default function UserVote() {
                         <p className="vote-subtitle">
                             Signed in as <b>{email}</b>
                         </p>
-                        <div className="vote-hero-grid">
-                            <div className="hero-card">
-                                <div className="hero-label">Secure</div>
-                                <div className="hero-value">Cognito</div>
-                                <div className="hero-sub">Identity verified</div>
-                            </div>
-                            <div className="hero-card">
-                                <div className="hero-label">Latency</div>
-                                <div className="hero-value">&lt; 1s</div>
-                                <div className="hero-sub">Realtime pipeline</div>
-                            </div>
-                            <div className="hero-card">
-                                <div className="hero-label">Poll</div>
-                                <div className="hero-value">{pollId}</div>
-                                <div className="hero-sub">Active session</div>
-                            </div>
-                        </div>
                         <div className="hero-steps">
                             <div className="hero-step">
                                 <span className="step-index">01</span>
-                                <span>בחר אפשרות אחת והגש הצבעה.</span>
+                                <span>Select one option.</span>
                             </div>
                             <div className="hero-step">
                                 <span className="step-index">02</span>
-                                <span>ההצבעה מאובטחת ומאומתת.</span>
+                                <span>Submit your vote.</span>
                             </div>
                             <div className="hero-step">
                                 <span className="step-index">03</span>
-                                <span>צפה בתוצאות החיות לאחר ההצבעה.</span>
+                                <span>View the live results.</span>
                             </div>
                         </div>
                     </section>
@@ -105,7 +88,7 @@ export default function UserVote() {
                     <section className="card vote-card vote-panel">
                         <div className="vote-header">
                             <div className="vote-panel-title">Choose your option</div>
-                            <p className="vote-subtitle">Your vote is final for this poll.</p>
+                            <p className="vote-subtitle">Your vote is final.</p>
                         </div>
                         <div className="vote-form">
                             <div className="field">
