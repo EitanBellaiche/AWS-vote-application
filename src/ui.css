@@ -135,6 +135,7 @@
   font-size: clamp(16px, 2vw, 22px);
   color: #0b121a;
   letter-spacing: -0.01em;
+  line-height: 1.35;
 }
 
 .poll-question--panel {
