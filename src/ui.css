@@ -817,9 +817,20 @@
   .kpi-grid { gap: 12px; }
   .kpi-total-card { min-height: 180px; }
   .ghost-btn { width: 100%; justify-content: center; }
-  .big-bar-row { flex-direction: column; align-items: flex-start; }
+  .bars { gap: 10px; }
+  .big-bar-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 12px;
+    border-radius: 14px;
+    border: 1px solid rgba(15, 23, 42, 0.12);
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 10px 24px rgba(9, 15, 24, 0.08);
+  }
   .big-bar-label { width: auto; }
   .bar-value { width: auto; text-align: left; }
+  .big-bar-track { width: 100%; height: 18px; }
   .option-grid { grid-template-columns: 1fr; }
   .vote-hero { padding: 20px; }
   .vote-hero-top { flex-direction: column; align-items: flex-start; }
@@ -839,7 +850,7 @@
   .page-title { font-size: 26px; }
   .kpi-time { font-size: 18px; }
   .total-big { font-size: 56px; }
-  .big-bar-track { height: 20px; }
+  .big-bar-track { height: 16px; }
   .table-card { padding: 12px; }
   .table-wrap { overflow-x: auto; }
   .vote-shell--full { gap: 16px; }
