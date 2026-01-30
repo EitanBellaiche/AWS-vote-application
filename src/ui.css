@@ -811,17 +811,40 @@
   .app-shell { max-width: 100%; }
   .card { padding: 16px; }
   .vote-card { padding: 20px; }
+  .header-row { flex-direction: column; align-items: flex-start; }
+  .page-title { font-size: 30px; }
+  .kicker { letter-spacing: 0.22em; }
+  .kpi-grid { gap: 12px; }
+  .kpi-total-card { min-height: 180px; }
   .ghost-btn { width: 100%; justify-content: center; }
   .big-bar-row { flex-direction: column; align-items: flex-start; }
   .big-bar-label { width: auto; }
   .bar-value { width: auto; text-align: left; }
   .option-grid { grid-template-columns: 1fr; }
   .vote-hero { padding: 20px; }
+  .vote-hero-top { flex-direction: column; align-items: flex-start; }
+  .vote-title { font-size: 30px; }
   .vote-hero-grid { grid-template-columns: 1fr; }
+  .hero-card { padding: 12px; }
+  .hero-step { padding: 10px 12px; }
+  .vote-panel { gap: 12px; }
   .option-grid--wide { grid-template-columns: 1fr; }
+  .cta-btn { font-size: 14px; padding: 12px 14px; }
+  .table { font-size: 12px; }
+  .th, .td { padding: 8px 6px; }
 }
 
 @media (max-width: 520px) {
   .app-page { padding: 20px 16px 40px; }
-  .page-title { font-size: 28px; }
+  .page-title { font-size: 26px; }
+  .kpi-time { font-size: 18px; }
+  .total-big { font-size: 56px; }
+  .big-bar-track { height: 20px; }
+  .table-card { padding: 12px; }
+  .table-wrap { overflow-x: auto; }
+  .vote-shell--full { gap: 16px; }
+  .vote-card, .vote-hero { border-radius: 16px; }
+  .hero-value { font-size: 20px; }
+  .vote-panel-title { font-size: 18px; }
+  .option-btn { padding: 10px; }
 }

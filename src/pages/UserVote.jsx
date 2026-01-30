@@ -41,14 +41,17 @@ export default function UserVote() {
             if (!res.ok) {
                 // אם המשתמש כבר הצביע, נציג את השגיאה באדום
                 if (res.status === 409) {
-                    setError("כבר הצבעת בסקר הזה!");
+                    setError("You have already voted in this poll.");
                     return;
                 }
                 throw new Error(data?.error || data?.message || `Error ${res.status}`);
             }
 
             // הודעת הצלחה (בדרך כלל מוצגת בירוק לפי ה-CSS שלך)
-            setMsg("הצבעתך נקלטה בהצלחה! 🙌");
+            setMsg("Your vote has been recorded! Redirecting…");
+            setTimeout(() => {
+                window.location.assign("/");
+            }, 700);
         } catch (e) {
             console.error("Submit Error:", e);
             setError(e.message);
