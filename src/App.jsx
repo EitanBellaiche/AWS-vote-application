@@ -5,6 +5,7 @@ const API_BASE = import.meta.env.VITE_API_BASE;
 
 export default function App() {
   const [pollId] = useState("poll-1");
+  const [question] = useState("Which programming language do you prefer?");
   const [results, setResults] = useState(null);
   const [error, setError] = useState("");
   const [loadingResults, setLoadingResults] = useState(false);
@@ -18,6 +19,11 @@ export default function App() {
     A: { className: "opt-a" },
     B: { className: "opt-b" },
     C: { className: "opt-c" },
+  };
+  const optionLabels = {
+    A: "Python",
+    B: "C++",
+    C: "JavaScript",
   };
 
   async function fetchResults(id) {
@@ -70,6 +76,7 @@ export default function App() {
               <div className="kicker">Cloud Voting Demo</div>
               <h1 className="page-title">Live Poll Results</h1>
               <div className="subline">Poll: <b>{pollId}</b></div>
+              <div className="poll-question">{question}</div>
               <div className="live-pill">
                 <span className="live-dot" />
                 Live stream
@@ -98,9 +105,7 @@ export default function App() {
               const pct = total ? Math.round((c / total) * 100) : 0;
               return (
                 <div key={o} className={`big-bar-row ${optionMeta[o]?.className || ""}`}>
-                  <div className="big-bar-label">
-                    Option <b>{o}</b>
-                  </div>
+                  <div className="big-bar-label">{optionLabels[o] || o}</div>
                   <div className="big-bar-track">
                     <div
                       className={`big-bar-fill ${optionMeta[o]?.className || ""}`}
@@ -132,7 +137,7 @@ export default function App() {
                       <tr key={`${v?.email || v?.name || "vote"}-${idx}`}>
                         <td className="td">{v?.voterId || v?.email || v?.name || "Anonymous"}</td>
                         <td className={`td option-pill ${optionMeta[v?.option]?.className || ""}`}>
-                          {v?.option || "-"}
+                          {optionLabels[v?.option] || v?.option || "-"}
                         </td>
                         <td className="td">
                           {v?.createdAt ? new Date(v.createdAt).toLocaleTimeString() : "-"}

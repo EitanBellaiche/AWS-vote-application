@@ -10,11 +10,17 @@ export default function UserVote() {
     const pollId = (urlParams && urlParams.get("poll")) || "poll-1";
 
     const [option, setOption] = useState("A");
+    const [question] = useState("Which programming language do you prefer?");
     const [submitting, setSubmitting] = useState(false);
     const [msg, setMsg] = useState("");
     const [error, setError] = useState("");
 
     const options = ["A", "B", "C"];
+    const optionLabels = {
+        A: "Python",
+        B: "C++",
+        C: "JavaScript",
+    };
     const email = auth.user?.profile?.email || auth.user?.profile?.["cognito:username"] || "unknown";
 
     async function submitVote() {
@@ -93,6 +99,7 @@ export default function UserVote() {
                             <div className="vote-panel-title">Choose your option</div>
                             <p className="vote-subtitle">Your vote is final.</p>
                         </div>
+                        <div className="poll-question poll-question--panel">{question}</div>
                         <div className="vote-form">
                             <div className="field">
                                 <div className="option-grid option-grid--wide">
@@ -102,7 +109,7 @@ export default function UserVote() {
                                             onClick={() => setOption(o)}
                                             className={`option-btn ${option === o ? "active" : ""}`}
                                         >
-                                            {o}
+                                            {optionLabels[o] || o}
                                         </button>
                                     ))}
                                 </div>
