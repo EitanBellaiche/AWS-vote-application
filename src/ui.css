@@ -102,11 +102,15 @@
   font-size: 22px;
   color: #0b121a;
   margin-bottom: 6px;
+  line-height: 1.4;
+  padding-bottom: 2px;
 }
 
 .auth-sub {
   color: var(--muted);
   font-size: 14px;
+  line-height: 1.5;
+  padding-bottom: 2px;
 }
 
 .page-title {
@@ -115,6 +119,8 @@
   font-size: clamp(28px, 4vw, 46px);
   letter-spacing: -0.03em;
   color: #0b121a;
+  line-height: 1.15;
+  padding-bottom: 2px;
 }
 
 .kicker {
@@ -135,7 +141,8 @@
   font-size: clamp(16px, 2vw, 22px);
   color: #0b121a;
   letter-spacing: -0.01em;
-  line-height: 1.35;
+  line-height: 1.4;
+  padding-bottom: 2px;
 }
 
 .poll-question--panel {
@@ -541,6 +548,8 @@
   font-size: clamp(28px, 3.8vw, 38px);
   margin: 12px 0 8px;
   color: #0b121a;
+  line-height: 1.2;
+  padding-bottom: 2px;
 }
 
 .vote-subtitle {
