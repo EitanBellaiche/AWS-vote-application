@@ -79,8 +79,15 @@ export default function UserVote() {
                             <button onClick={submitVote} disabled={submitting} className="cta-btn">
                                 {submitting ? "Submitting…" : "Submit vote"}
                             </button>
-                            {msg && <div className="alert success">{msg}</div>}
-                            {error && <div className="alert error">{error}</div>}
+            {msg && <div className="alert success">{msg}</div>}
+            {error && <div className="alert error">{error}</div>}
+            {msg && (
+              <a href="/" style={{ width: "100%" }}>
+                <button type="button" className="cta-btn" style={{ marginTop: 10 }}>
+                  View live results
+                </button>
+              </a>
+            )}
                         </div>
                     </section>
                 </div>
