@@ -59,18 +59,63 @@ export default function UserVote() {
     return (
         <div className="app-page vote-page">
             <div className="app-shell">
-                <div className="vote-shell">
-                    <section className="card vote-card">
-                        <div className="vote-header">
+                <div className="vote-shell vote-shell--full">
+                    <section className="vote-hero">
+                        <div className="vote-hero-top">
                             <div className="vote-badge">Verified Voter</div>
-                            <h1 className="vote-title">Cast Your Vote</h1>
-                            <p className="vote-subtitle">Signed in as <b>{email}</b></p>
+                            <div className="vote-kicker">Cloud Voting Platform</div>
+                        </div>
+                        <h1 className="vote-title">Cast Your Vote</h1>
+                        <p className="vote-subtitle">
+                            Signed in as <b>{email}</b>
+                        </p>
+                        <div className="vote-hero-grid">
+                            <div className="hero-card">
+                                <div className="hero-label">Secure</div>
+                                <div className="hero-value">Cognito</div>
+                                <div className="hero-sub">Identity verified</div>
+                            </div>
+                            <div className="hero-card">
+                                <div className="hero-label">Latency</div>
+                                <div className="hero-value">&lt; 1s</div>
+                                <div className="hero-sub">Realtime pipeline</div>
+                            </div>
+                            <div className="hero-card">
+                                <div className="hero-label">Poll</div>
+                                <div className="hero-value">{pollId}</div>
+                                <div className="hero-sub">Active session</div>
+                            </div>
+                        </div>
+                        <div className="hero-steps">
+                            <div className="hero-step">
+                                <span className="step-index">01</span>
+                                <span>בחר אפשרות אחת והגש הצבעה.</span>
+                            </div>
+                            <div className="hero-step">
+                                <span className="step-index">02</span>
+                                <span>ההצבעה מאובטחת ומאומתת.</span>
+                            </div>
+                            <div className="hero-step">
+                                <span className="step-index">03</span>
+                                <span>צפה בתוצאות החיות לאחר ההצבעה.</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section className="card vote-card vote-panel">
+                        <div className="vote-header">
+                            <div className="vote-panel-title">Choose your option</div>
+                            <p className="vote-subtitle">Your vote is final for this poll.</p>
                         </div>
                         <div className="vote-form">
                             <div className="field">
-                                <div className="option-grid">
+                                <div className="option-grid option-grid--wide">
                                     {options.map((o) => (
-                                        <button key={o} onClick={() => setOption(o)} className={`option-btn ${option === o ? "active" : ""}`}>
+                                        <button
+                                            key={o}
+                                            onClick={() => setOption(o)}
+                                            className={`option-btn ${option === o ? "active" : ""}`}
+                                        >
                                             {o}
                                         </button>
                                     ))}
@@ -79,15 +124,15 @@ export default function UserVote() {
                             <button onClick={submitVote} disabled={submitting} className="cta-btn">
                                 {submitting ? "Submitting…" : "Submit vote"}
                             </button>
-            {msg && <div className="alert success">{msg}</div>}
-            {error && <div className="alert error">{error}</div>}
-            {msg && (
-              <a href="/" style={{ width: "100%" }}>
-                <button type="button" className="cta-btn" style={{ marginTop: 10 }}>
-                  View live results
-                </button>
-              </a>
-            )}
+                            {msg && <div className="alert success">{msg}</div>}
+                            {error && <div className="alert error">{error}</div>}
+                            {msg && (
+                                <a href="/" style={{ width: "100%" }}>
+                                    <button type="button" className="cta-btn" style={{ marginTop: 10 }}>
+                                        View live results
+                                    </button>
+                                </a>
+                            )}
                         </div>
                     </section>
                 </div>
